@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Katleo Rantle — CV</title>
+  <style>
+    :root {
+      --primary: #0F172A;
+      --accent: #0EA5E9;
+      --accent-dark: #0284C7;
+      --muted: #64748B;
+      --sub-line: #94A3B8;
+      --pill-live: #059669;
+      --pill-demo: #2563EB;
+      --pill-repo: #7C3AED;
+      --pill-docs: #D97706;
+      --page-bg: #ffffff;
+      --hover-bg: #F8FAFC;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      color: var(--primary);
+      background: #e2e8f0;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 210mm;
+      margin: 24px auto;
+      background: var(--page-bg);
+      padding: 14mm 15.5mm;
+      box-shadow: 0 4px 24px rgba(15, 23, 42, 0.12);
+    }
+
+    /* ===== HEADER ===== */
+    .name {
+      font-size: 21pt;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .job-title {
+      font-size: 10.5pt;
+      color: var(--accent-dark);
+      margin-top: 2px;
+      margin-bottom: 6px;
+    }
+
+    .contact {
+      font-size: 8.5pt;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .contact a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      color: var(--accent-dark);
+      text-decoration: underline;
+    }
+
+    .header-rule {
+      border: none;
+      border-top: 1.6px solid var(--primary);
+      margin: 0 0 12px 0;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section-title {
+      font-size: 10pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primary);
+      letter-spacing: 0.02em;
+      margin-top: 14px;
+      margin-bottom: 3px;
+    }
+
+    .section-rule {
+      border: none;
+      border-top: 1.2px solid var(--accent);
+      margin: 0 0 8px 0;
+    }
+
+    .body-text {
+      font-size: 9pt;
+      line-height: 1.42;
+      text-align: justify;
+      margin-bottom: 6px;
+    }
+
+    .muted {
+      font-size: 8pt;
+      color: var(--muted);
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+
+    .soft-skills-band {
+      margin: 12px 0 8px 0;
+    }
+
+    .soft-skills-band .section-rule {
+      margin-bottom: 10px;
+    }
+
+    .soft-skills-band .section-rule.after {
+      margin-top: 8px;
+      margin-bottom: 6px;
+    }
+
+    .soft-skills {
+      font-size: 9pt;
+      line-height: 1.4;
+    }
+
+    .skills {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 4px;
+    }
+
+    .skills td {
+      vertical-align: top;
+      padding: 3px 0;
+      font-size: 8.5pt;
+      line-height: 1.35;
+    }
+
+    .skills td:first-child {
+      width: 30mm;
+      font-weight: 700;
+      padding-right: 8px;
+      white-space: nowrap;
+    }
+
+    /* ===== COLLAPSIBLE CATEGORIES ===== */
+    details.category {
+      margin-top: 10px;
+      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 4px;
+    }
+
+    details.category > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: var(--primary);
+      padding: 8px 6px;
+      border-radius: 6px;
+      user-select: none;
+      border-bottom: 0.9px solid var(--sub-line);
+      margin-bottom: 6px;
+    }
+
+    details.category > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.category > summary::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 11px;
+      color: var(--accent-dark);
+      transition: transform 0.15s ease;
+      width: 12px;
+    }
+
+    details.category[open] > summary::before {
+      transform: rotate(90deg);
+    }
+
+    details.category > summary:hover {
+      background: var(--hover-bg);
+    }
+
+    details.category > summary .count {
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: var(--muted);
+      background: #F1F5F9;
+      padding: 1px 7px;
+      border-radius: 999px;
+      margin-left: auto;
+    }
+
+    /* ===== COLLAPSIBLE PROJECTS ===== */
+    details.project {
+      margin: 4px 0 8px 0;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    details.project > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      padding: 8px 10px;
+      user-select: none;
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    details.project > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.project > summary::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 10px;
+      color: var(--muted);
+      transition: transform 0.15s ease;
+      width: 10px;
+      flex-shrink: 0;
+    }
+
+    details.project[open] > summary::before {
+      transform: rotate(90deg);
+      color: var(--accent-dark);
+    }
+
+    details.project > summary:hover {
+      background: var(--hover-bg);
+    }
+
+    details.project[open] {
+      border-color: #CBD5E1;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+    }
+
+    details.project[open] > summary {
+      border-bottom: 1px solid #E2E8F0;
+      background: #F8FAFC;
+    }
+
+    .project-note {
+      font-size: 7.5pt;
+      font-style: italic;
+      color: var(--accent-dark);
+      font-weight: 400;
+    }
+
+    .project-body {
+      padding: 8px 12px 10px 12px;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 10px;
+      margin-bottom: 6px;
+    }
+
+    /* pills also shown in summary when collapsed for quick scan */
+    summary .pills {
+      margin-bottom: 0;
+      margin-left: 4px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-badge {
+      display: inline-block;
+      font-size: 7pt;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      padding: 2.5px 7px;
+      border-radius: 999px;
+      line-height: 1.2;
+      letter-spacing: 0.03em;
+      text-align: center;
+      min-width: 2.4em;
+    }
+
+    .pill-live .pill-badge { background: var(--pill-live); }
+    .pill-demo .pill-badge { background: var(--pill-demo); }
+    .pill-repo .pill-badge { background: var(--pill-repo); }
+    .pill-docs .pill-badge { background: var(--pill-docs); }
+
+    .pill a {
+      font-size: 8pt;
+      color: var(--accent-dark);
+      text-decoration: none;
+    }
+
+    .pill a:hover {
+      text-decoration: underline;
+    }
+
+    .bullet {
+      font-size: 8.5pt;
+      line-height: 1.4;
+      padding-left: 4px;
+      margin-bottom: 4px;
+    }
+
+    .bullet i {
+      font-style: italic;
+    }
+
+    .certs li {
+      font-size: 8.5pt;
+      line-height: 1.4;
+      margin-left: 14px;
+      margin-bottom: 3px;
+      list-style: disc;
+    }
+
+    .ref-line {
+      font-size: 8.5pt;
+      line-height: 1.4;
+      padding-left: 6px;
+      margin-bottom: 4px;
+    }
+
+    /* Toolbar */
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      margin: 10px 0 4px 0;
+      flex-wrap: wrap;
+    }
+
+    .toolbar button {
+      font-family: inherit;
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--accent-dark);
+      background: #F0F9FF;
+      border: 1px solid #BAE6FD;
+      border-radius: 999px;
+      padding: 4px 12px;
+      cursor: pointer;
+    }
+
+    .toolbar button:hover {
+      background: #E0F2FE;
+    }
+
+    @media print {
+      body { background: white; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        max-width: none;
+        width: 100%;
+        padding: 12mm 15mm;
+      }
+      .toolbar { display: none; }
+      details.category,
+      details.project {
+        border: none;
+        box-shadow: none;
+      }
+      details.category > summary::before,
+      details.project > summary::before {
+        display: none;
+      }
+      details.project > summary {
+        padding-left: 0;
+      }
+      /* expand everything when printing */
+      details.category,
+      details.project {
+        open: true;
+      }
+      details.category > .project,
+      details.project > .project-body {
+        display: block !important;
+      }
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HEADER -->
+    <div class="name">KATLEO RANTLE</div>
+    <div class="job-title">Software Developer  ·  ICT Graduate</div>
+    <div class="contact">
+      +27 61 427 7168  ·
+      <a href="mailto:kprantle@gmail.com">kprantle@gmail.com</a>  ·
+      <a href="https://katleo.co.za" target="_blank" rel="noopener">katleo.co.za</a>  ·
+      <a href="https://github.com/katleo-rantle" target="_blank" rel="noopener">github.com/katleo-rantle</a>
+    </div>
+    <hr class="header-rule" />
+
+    <!-- SUMMARY -->
+    <div class="section-title">Professional Summary</div>
+    <hr class="section-rule" />
+    <p class="body-text">
+      Information and Communications Technology (ICT) graduate with a strong passion for
+      full-stack software development and modern cloud infrastructure. Self-taught in Java,
+      Angular, and foundational cloud computing. Hands-on practice building responsive web
+      applications, containerised services, and backend architectures through personal projects.
+      Seeking graduate opportunities to contribute to impactful software solutions while continuing
+      to grow as an engineer.
+    </p>
+
+    <!-- TECHNICAL SKILLS -->
+    <div class="section-title">Technical Skills</div>
+    <hr class="section-rule" />
+    <table class="skills">
+      <tr>
+        <td>Languages</td>
+        <td>TypeScript (Proficient), Java, Python (Intermediate)</td>
+      </tr>
+      <tr>
+        <td>Front-End</td>
+        <td>React, Angular, Redux, HTML5, CSS3, Tailwind CSS, Next.js, GSAP</td>
+      </tr>
+      <tr>
+        <td>Back-End</td>
+        <td>Node.js, Spring Framework, Java, MongoDB, PostgreSQL</td>
+      </tr>
+      <tr>
+        <td>Cloud &amp; DevOps</td>
+        <td>AWS (EC2, S3, VPC, Lambda, IAM), Terraform, Docker, Kubernetes, CI/CD</td>
+      </tr>
+      <tr>
+        <td>Tools</td>
+        <td>Git, Postman, VS Code, Linux</td>
+      </tr>
+    </table>
+
+    <!-- SOFT SKILLS -->
+    <div class="soft-skills-band">
+      <hr class="section-rule" />
+      <p class="soft-skills">
+        <strong>Soft Skills:</strong>
+        Problem-Solving  ·  Collaboration &amp; Communication  ·  Adaptability  ·  Strong Work Ethic
+      </p>
+      <hr class="section-rule after" />
+    </div>
+
+    <!-- ACADEMIC -->
+    <div class="section-title">Academic History</div>
+    <hr class="section-rule" />
+    <p class="body-text">
+      <strong>Bachelor of Information and Communications Technology (ICT)</strong>
+      — Durban University of Technology
+    </p>
+    <p class="muted">
+      Core Focus: Software development methodologies, data structures, database management, network security.
+    </p>
+
+    <!-- MY PROJECTS -->
+    <div class="section-title">My Projects</div>
+    <hr class="section-rule" />
+    <p class="muted">
+      Selected work spanning frontend apps, full-stack systems, cloud infrastructure, and containerisation.
+      Click a category or project to expand or collapse.
+    </p>
+
+    <div class="toolbar">
+      <button type="button" id="expand-all">Expand all</button>
+      <button type="button" id="collapse-all">Collapse all</button>
+    </div>
+
+    <!-- STATIC & FRONTEND -->
+    <details class="category" open>
+      <summary>
+        Static &amp; Frontend Applications
+        <span class="count">3</span>
+      </summary>
+
+      <details class="project" open>
+        <summary>
+          Moses &amp; Fire Electrical
+          <span class="project-note">(Freelance)</span>
+          <span class="pills">
+            <span class="pill pill-live">
+              <span class="pill-badge">Live</span>
+              <a href="https://mosesandfireelectrical.co.za" target="_blank" rel="noopener" onclick="event.stopPropagation()">mosesandfireelectrical.co.za</a>
+            </span>
+          </span>
+        </summary>
+        <div class="project-body">
+          <p class="bullet"><i>Problem:</i> Local electrical contractors lacked a professional branded platform to showcase services and convert web traffic into customers.</p>
+          <p class="bullet"><i>Solution:</i> End-to-end freelance delivery of a fully responsive React site, including logo and letterhead design, professional email setup, and web hosting configuration.</p>
+          <p class="bullet"><i>Stack:</i> React, Tailwind CSS</p>
+        </div>
+      </details>
+
+      <details class="project" open>
+        <summary>
+          Rantle Construction
+          <span class="project-note">(Freelance)</span>
+          <span class="pills">
+            <span class="pill pill-live">
+              <span class="pill-badge">Live</span>
+              <a href="https://www.rantle.co.za" target="_blank" rel="noopener" onclick="event.stopPropagation()">rantle.co.za</a>
+            </span>
+          </span>
+        </summary>
+        <div class="project-body">
+          <p class="bullet"><i>Problem:</i> A construction company needed a professional online presence to present services, build trust with clients, and generate enquiries.</p>
+          <p class="bullet"><i>Solution:</i> End-to-end freelance delivery of a polished React site with GSAP animations, including logo and letterhead design, professional email setup, and web hosting configuration.</p>
+          <p class="bullet"><i>Stack:</i> React, GSAP, Tailwind CSS</p>
+        </div>
+      </details>
+
+      <details class="project" open>
+        <summary>
+          MixMaster Drinks API Explorer
+          <span class="pills">
+            <span class="pill pill-demo">
+              <span class="pill-badge">Demo</span>
+              <a href="https://reactapp-mixmaster.netlify.app" target="_blank" rel="noopener" onclick="event.stopPropagation()">reactapp-mixmaster.netlify.app</a>
+            </span>
+          </span>
+        </summary>
+        <div class="project-body">
+          <p class="bullet"><i>Problem:</i> Standard web apps suffer from slow experiences and server strain due to unoptimized network requests and repetitive API calls.</p>
+          <p class="bullet"><i>Solution:</i> SPA with dynamic routing, optimized request caching via React Query, and seamless search for beverage recipe data.</p>
+          <p class="bullet"><i>Stack:</i> React, React Router DOM, React Query, JavaScript, REST APIs</p>
+        </div>
+      </details>
+    </details>
+
+    <!-- FULL-STACK -->
+    <details class="category" open>
+      <summary>
+        Full-Stack Applications
+        <span class="count">2</span>
+      </summary>
+
+      <details class="project" open>
+        <summary>
+          Construction Management Platform
+          <span class="project-note">(Currently working on)</span>
+          <span class="pills">
+            <span class="pill pill-repo">
+              <span class="pill-badge">Repo</span>
+              <a href="https://github.com/katleo-rantle/saas-app-builder" target="_blank" rel="noopener" onclick="event.stopPropagation()">github.com/katleo-rantle/saas-app-builder</a>
+            </span>
+          </span>
+        </summary>
+        <div class="project-body">
+          <p class="bullet"><i>Problem:</i> Construction teams struggle with fragmented role permissions, inefficient task delegation, and real-time tracking of payroll and project changes.</p>
+          <p class="bullet"><i>Solution:</i> Multi-role dashboard system for managing complex project workflows, employee tasks, payroll, invoices, payments, and change orders.</p>
+          <p class="bullet"><i>Stack:</i> Java, Spring Framework, Angular, REST APIs</p>
+        </div>
+      </details>
+
+      <details class="project" open>
+        <summary>
+          Task Management App
+          <span class="pills">
+            <span class="pill pill-repo">
+              <span class="pill-badge">Repo</span>
+              <a href="https://github.com/katleo-rantle/Java-tasks-API" target="_blank" rel="noopener" onclick="event.stopPropagation()">github.com/katleo-rantle/Java-tasks-API</a>
+            </span>
+          </span>
+        </summary>
+        <div class="project-body">
+          <p class="bullet"><i>Problem:</i> Teams need a reliable way to create, assign, and track tasks with a clean API contract and a modern, container-ready frontend.</p>
+          <p class="bullet"><i>Solution:</i> Spring Boot REST API for task CRUD and status management, paired with a containerised frontend for a full-stack task management experience.</p>
+          <p class="bullet"><i>Stack:</i> Java, Spring Boot, REST APIs, Docker</p>
+        </div>
+      </details>
+    </details>
+
+    <!-- AWS -->
+    <details class="category" open>
+      <summary>
+        AWS Cloud Infrastructure
+        <span class="count">4</span>
+      </summary>
+      <p class="muted" style="padding: 0 6px 6px;">Hands-on cloud projects with full documentation covering storage, networking, and security.</p>
+
+      <details class="project" open>
+        <summary>
+          Cloud-Hosted Resume Pipeline
+          <span class="pills">
+            <span class="pill pill-live">
+              <span class="pill-badge">Live</span>
+              <a href="http://katleo-rantle.com.s3-website.af-south-1.amazonaws.com" target="_blank" rel="noopener" onclick="event.stopPropagation()">katleo-rantle.com.s3-website.af-south-1.amazonaws.com</a>
+            </span>
+          </span>
+        </summary>
+        <div class="project-body">
+          <p class="bullet"><i>Problem:</i> Serving static website content securely on public infrastructure requires proper access controls, automation, and architectural clarity.</p>
+          <p class="bullet"><i>Solution:</i> Static cloud resume hosted on object storage with read-only public access rules, proper IAM security roles, and full architecture documentation.</p>
+          <p class="bullet"><i>Stack:</i> HTML5, CSS3, JavaScript, AWS S3, AWS IAM</p>
+        </div>
+      </details>
+
+      <details class="project" open>
+        <summary>
+          VPC from Scratch
+          <span class="pills">
+            <span class="pill pill-docs">
+              <span class="pill-badge">Docs</span>
+              <a href="https://github.com/katleo-rantle/katleo-rantle/blob/main/legendary-aws-networks-vpc.pdf" target="_blank" rel="noopener" onclick="event.stopPropagation()">PDF Documentation</a>
+            </span>
+          </span>
+        </summary>
+        <div class="project-body">
+          <p class="bullet"><i>Problem:</i> Default networking setups lack isolation and control; production workloads need custom network boundaries and controlled internet access.</p>
+          <p class="bullet"><i>Solution:</i> Designed and built a custom VPC with a public subnet and Internet Gateway, documenting the full network architecture from the ground up.</p>
+          <p class="bullet"><i>Stack:</i> AWS VPC, Subnets, Internet Gateway</p>
+        </div>
+      </details>
+
+      <details class="project" open>
+        <summary>
+          VPC Security
+          <span class="pills">
+            <span class="pill pill-docs">
+              <span class="pill-badge">Docs</span>
+              <a href="https://github.com/katleo-rantle/katleo-rantle/blob/main/legendary-aws-networks-security.pdf" target="_blank" rel="noopener" onclick="event.stopPropagation()">PDF Documentation</a>
+            </span>
+          </span>
+        </summary>
+        <div class="project-body">
+          <p class="bullet"><i>Problem:</i> Open network configurations expose resources to unnecessary risk; layered controls are required at both instance and subnet levels.</p>
+          <p class="bullet"><i>Solution:</i> Implemented Security Groups and Network ACLs, and validated multi-region visibility of security posture with documented rules and rationale.</p>
+          <p class="bullet"><i>Stack:</i> AWS Security Groups, NACLs, Multi-Region</p>
+        </div>
+      </details>
+
+      <details class="project" open>
+        <summary>
+          Private Subnet
+          <span class="pills">
+            <span class="pill pill-docs">
+              <span class="pill-badge">Docs</span>
+              <a href="https://github.com/katleo-rantle/katleo-rantle/blob/main/legendary-aws-networks-private.pdf" target="_blank" rel="noopener" onclick="event.stopPropagation()">PDF Documentation</a>
+            </span>
+          </span>
+        </summary>
+        <div class="project-body">
+          <p class="bullet"><i>Problem:</i> Sensitive workloads should not be directly reachable from the internet and need isolated routing and access controls.</p>
+          <p class="bullet"><i>Solution:</i> Created an isolated private subnet with a custom route table and NACL, ensuring no direct internet exposure while supporting controlled outbound paths.</p>
+          <p class="bullet"><i>Stack:</i> AWS Private Subnet, Route Tables, NACLs</p>
+        </div>
+      </details>
+    </details>
+
+    <!-- DOCKER -->
+    <details class="category" open>
+      <summary>
+        Containerisation (Docker)
+        <span class="count">2</span>
+      </summary>
+
+      <details class="project" open>
+        <summary>
+          Containerized Express App
+          <span class="pills">
+            <span class="pill pill-repo">
+              <span class="pill-badge">Repo</span>
+              <a href="https://github.com/katleo-rantle/containerized-express-app" target="_blank" rel="noopener" onclick="event.stopPropagation()">github.com/katleo-rantle/containerized-express-app</a>
+            </span>
+          </span>
+        </summary>
+        <div class="project-body">
+          <p class="bullet"><i>Problem:</i> Running a Node.js backend without containers leads to inconsistent environments and larger-than-necessary images across development and production.</p>
+          <p class="bullet"><i>Solution:</i> Containerised a Node.js/Express backend with optimised Docker layers for faster builds, smaller image size, and reproducible deployments.</p>
+          <p class="bullet"><i>Stack:</i> Node.js, Express, Docker</p>
+        </div>
+      </details>
+
+      <details class="project" open>
+        <summary>
+          Containerized React App
+          <span class="pills">
+            <span class="pill pill-repo">
+              <span class="pill-badge">Repo</span>
+              <a href="https://github.com/katleo-rantle/containerized-react-app" target="_blank" rel="noopener" onclick="event.stopPropagation()">github.com/katleo-rantle/containerized-react-app</a>
+            </span>
+          </span>
+        </summary>
+        <div class="project-body">
+          <p class="bullet"><i>Problem:</i> Serving a React SPA efficiently requires a production-grade static server and a build process that keeps the final image lean.</p>
+          <p class="bullet"><i>Solution:</i> Implemented a multi-stage Docker build that compiles the React app and serves it via Nginx, producing a small, production-ready container image.</p>
+          <p class="bullet"><i>Stack:</i> React, Docker, Nginx, Multi-stage Builds</p>
+        </div>
+      </details>
+    </details>
+
+    <!-- CERTS -->
+    <div class="section-title">Certifications &amp; Courses</div>
+    <hr class="section-rule" />
+    <ul class="certs">
+      <li>Web Design — GetSmarter / University of Cape Town (UCT)</li>
+      <li>Web Development: HTML5 &amp; CSS3 Real-World Projects</li>
+      <li>Node.js Tutorial &amp; Projects: Node.js, Express, MongoDB</li>
+      <li>Hands-on React: Next.js, TypeScript, Prisma, Zod, Axios, React Query, Redux Toolkit</li>
+      <li>AWS &amp; Cloud Computing: Core Compute, Storage, Networking, Observability, Security &amp; High Availability</li>
+    </ul>
+
+    <!-- REFERENCES -->
+    <div class="section-title">References</div>
+    <hr class="section-rule" />
+    <p class="ref-line"><strong>Moses &amp; Fire Electrical</strong> — Peter (Owner) · Cell: 083 982 6020</p>
+    <p class="ref-line"><strong>Rantle Construction</strong> — Seabata (Owner) · Cell: 083 717 3812</p>
+    <p class="muted"><i>Available upon request for further details.</i></p>
+
+  </div>
+
+  <script>
+    function setOpen(selector, open) {
+      document.querySelectorAll(selector).forEach((el) => {
+        el.open = open;
+      });
+    }
+
+    document.getElementById("expand-all").addEventListener("click", () => {
+      setOpen("details.category, details.project", true);
+    });
+
+    document.getElementById("collapse-all").addEventListener("click", () => {
+      setOpen("details.project", false);
+      setOpen("details.category", false);
+    });
+
+    // Prevent nested summary clicks from toggling parent awkwardly
+    document.querySelectorAll("details.project > summary").forEach((summary) => {
+      summary.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
+    });
+  </script>
+</body>
+</html>
